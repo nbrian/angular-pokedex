@@ -1,0 +1,38 @@
+@use '@angular/material' as mat;
+@use '@angular/material/theming' as theme;
+
+@include mat.core();
+
+$pokedex-primary-font: '"Press Start 2P", monospace';
+$pokedex-secondary-font: 'Roboto, "Helvetica Neue", sans-serif';
+
+// Define your theme colors
+$primary: mat.define-palette(mat.$blue-palette, 600);
+$accent: mat.define-palette(mat.$red-palette, 400);
+$warn: mat.define-palette(mat.$deep-orange-palette);
+
+$pokedex-typography: mat.define-typography-config(
+    $font-family: $pokedex-primary-font,
+    $headline: mat.define-typography-level(96px, normal, 1.125, $pokedex-primary-font),
+    $title: mat.define-typography-level(60px, normal, 1.15, $pokedex-primary-font),
+    $subheading-2: mat.define-typography-level(48px, normal, 1.167, $pokedex-primary-font),
+    $subheading-1: mat.define-typography-level(34px, normal, 1.235, $pokedex-primary-font),
+    $body-1: mat.define-typography-level(16px, normal, 1.5, $pokedex-secondary-font),
+    $body-2: mat.define-typography-level(14px, normal, 1.43, $pokedex-secondary-font),
+    $button: mat.define-typography-level(14px, normal, 1.75, $pokedex-primary-font),
+    $caption: mat.define-typography-level(12px, normal, 1.66, $pokedex-secondary-font),
+    $input: mat.define-typography-level(12px, 400, 2.66, $pokedex-primary-font)
+);
+
+// Create a custom theme
+$pokedex-theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+  ),
+  typography: $pokedex-typography
+));
+
+@include mat.all-component-themes($pokedex-theme);
+@include mat.typography-hierarchy($pokedex-theme);
